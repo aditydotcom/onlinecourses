@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Kelas;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/profile';
 
     /**
      * Create a new controller instance.
@@ -49,6 +50,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'name'  => ['required', 'string', 'max:255'],
+            'asal_sekolah' => ['required', 'string', 'max:255'],
+            'kelas_id' => ['required', 'integer'],
+            'jenis_kelamin' => ['required', 'string', 'max:15'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -61,9 +66,19 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+    public function kelas()
+    {
+        $data['kelas'] = Kelas::all();
+        return view('auth.register', $data);
+    }
+
     protected function create(array $data)
     {
         return User::create([
+            'name' => $data['name'],
+            'asal_sekolah' => $data['asal_sekolah'],
+            'kelas_id' => $data['kelas_id'],
+            'jenis_kelamin' => $data['jenis_kelamin'],
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

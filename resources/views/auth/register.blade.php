@@ -12,6 +12,48 @@
                         @csrf
 
                         <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="jenis_kelamin" class="col-md-4 col-form-label text-md-right">{{ __('Jenis Kelamin') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="jenis_kelamin" type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ old('jenis_kelamin') }}" required autocomplete="jenis_kelamin" autofocus>
+                                    <option value="L">Laki-Laki</option>
+                                    <option value="P">Perempuan</option>
+                                </select>
+                                @error('jenis_kelamin')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="kelas_id" class="col-md-4 col-form-label text-md-right">{{ __('Kelas') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="kelas_id" class="form-control" id="kelas_id">
+                                    @foreach ($kelas as $item)
+                                        <option value="{{ $item->id_kelas }}">{{ $item->nama_kelas }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
 
                             <div class="col-md-6">

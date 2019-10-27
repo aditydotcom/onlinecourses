@@ -12,10 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile', 'MemberController@index');
+Route::post('/profile', 'MemberController@store');
 Route::get('admin/routes', 'HomeController@admin')->middleware('admin');
