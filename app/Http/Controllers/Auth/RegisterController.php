@@ -52,7 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name'  => ['required', 'string', 'max:255'],
             'asal_sekolah' => ['required', 'string', 'max:255'],
-            'kelas_id' => ['required', 'integer'],
+            'kelas' => ['required', 'string', 'max:30'],
             'jenis_kelamin' => ['required', 'string', 'max:15'],
             'username' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -66,18 +66,13 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    public function kelas()
-    {
-        $data['kelas'] = Kelas::all();
-        return view('auth.register', $data);
-    }
 
     protected function create(array $data)
     {
         return User::create([
             'name' => $data['name'],
             'asal_sekolah' => $data['asal_sekolah'],
-            'kelas_id' => $data['kelas_id'],
+            'kelas' => $data['kelas'],
             'jenis_kelamin' => $data['jenis_kelamin'],
             'username' => $data['username'],
             'email' => $data['email'],

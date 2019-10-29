@@ -26,14 +26,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="jenis_kelamin" class="col-md-4 col-form-label text-md-right">{{ __('Jenis Kelamin') }}</label>
+                            <label for="kelas" class="col-md-4 col-form-label text-md-right">{{ __('Kelas') }}</label>
 
                             <div class="col-md-6">
-                                <select id="jenis_kelamin" type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin" value="{{ old('jenis_kelamin') }}" required autocomplete="jenis_kelamin" autofocus>
-                                    <option value="L">Laki-Laki</option>
-                                    <option value="P">Perempuan</option>
+                                <select id="kelas" type="text" class="form-control @error('kelas') is-invalid @enderror" name="kelas" value="{{ old('kelas') }}" required autocomplete="kelas" autofocus>
+                                    <option value="SD">SD - Sekolah Dasar</option>
+                                    <option value="SMP">SMP - Sekolah Menengah Pertama</option>
+                                    <option value="SMA">SMA - Sekolah Menengah Atas</option>
                                 </select>
-                                @error('jenis_kelamin')
+                                @error('kelas')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -42,14 +43,18 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="kelas_id" class="col-md-4 col-form-label text-md-right">{{ __('Kelas') }}</label>
+                            <label for="kelas" class="col-md-4 col-form-label text-md-right">{{ __('Jenis Kelamin') }}</label>
 
                             <div class="col-md-6">
-                                <select name="kelas_id" class="form-control" id="kelas_id">
-                                    @foreach ($kelas as $item)
-                                        <option value="{{ $item->id_kelas }}">{{ $item->nama_kelas }}</option>
-                                    @endforeach
+                                <select id="kelas" type="text" class="form-control @error('kelas') is-invalid @enderror" name="kelas" value="{{ old('kelas') }}" required autocomplete="kelas" autofocus>
+                                    <option value="L">Laki-Laki</option>
+                                    <option value="P">Perempuan</option>
                                 </select>
+                                @error('kelas')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
